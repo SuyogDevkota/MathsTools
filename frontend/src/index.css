@@ -1,0 +1,16 @@
+/* index.css */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+a {
+  text-decoration: none;
+  color: #2a6fdb;
+}
+
+a:hover {
+  color: #184eb1;
+}

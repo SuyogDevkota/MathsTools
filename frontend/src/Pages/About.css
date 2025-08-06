@@ -1,0 +1,71 @@
+.about-section {
+  padding: 40px;
+  background: linear-gradient(to right, #f3e5f5, #e0f7fa);
+  display: flex;
+  justify-content: center;
+}
+
+.about-card {
+  display: flex;
+  gap: 40px;
+  max-width: 1000px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  padding: 30px;
+  flex-wrap: wrap;
+}
+
+.left {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+}
+
+.teacher-image {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid #6a1b9a;
+}
+
+.right {
+  flex: 2;
+  min-width: 300px;
+}
+
+.right h1 {
+  color: #6a1b9a;
+  margin-bottom: 0;
+}
+
+.right h3 {
+  margin-top: 5px;
+  color: #00796b;
+}
+
+.bio {
+  margin-top: 20px;
+  font-size: 1rem;
+  color: #444;
+}
+
+.section {
+  margin-top: 20px;
+}
+
+.section h4 {
+  color: #3949ab;
+  margin-bottom: 5px;
+}
+
+.section ul {
+  padding-left: 20px;
+  list-style-type: square;
+}
+
+.section p {
+  color: #333;
+}

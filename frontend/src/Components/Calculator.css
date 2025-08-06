@@ -1,0 +1,373 @@
+.calculator-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+}
+
+.calculator {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 100%;
+  max-width: 800px;
+  min-height: 600px;
+}
+
+.calculator-header {
+  background: linear-gradient(135deg, #3f51b5 0%, #303f9f 100%);
+  color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.calculator-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.mode-toggle {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.mode-toggle:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.mode-toggle.active {
+  background: #ffca28;
+  color: #333;
+}
+
+.display-container {
+  background: #f8f9fa;
+  padding: 20px;
+  text-align: right;
+  position: relative;
+}
+
+.display {
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: #333;
+  margin-bottom: 5px;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.operation-display {
+  font-size: 1.2rem;
+  color: #666;
+  min-height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.calculator-body {
+  display: flex;
+  height: 500px;
+}
+
+.calculator-main {
+  flex: 2;
+  padding: 20px;
+}
+
+.button-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  height: 100%;
+}
+
+.function-btn {
+  background: #e3f2fd;
+  color: #1976d2;
+  border: none;
+  border-radius: 10px;
+  padding: 15px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  grid-column: span 1;
+}
+
+.function-btn:hover {
+  background: #bbdefb;
+  transform: translateY(-2px);
+}
+
+.digit-btn {
+  background: #f5f5f5;
+  color: #333;
+  border: none;
+  border-radius: 10px;
+  padding: 20px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.digit-btn:hover {
+  background: #e0e0e0;
+  transform: translateY(-2px);
+}
+
+.digit-btn.zero {
+  grid-column: span 2;
+}
+
+.operator-btn {
+  background: #ff9800;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 20px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.operator-btn:hover {
+  background: #f57c00;
+  transform: translateY(-2px);
+}
+
+.clear-btn {
+  background: #f44336;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 20px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.clear-btn:hover {
+  background: #d32f2f;
+  transform: translateY(-2px);
+}
+
+.equals-btn {
+  background: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 20px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  grid-row: span 2;
+}
+
+.equals-btn:hover {
+  background: #388e3c;
+  transform: translateY(-2px);
+}
+
+.calculator-sidebar {
+  flex: 1;
+  background: #f8f9fa;
+  border-left: 1px solid #e0e0e0;
+  padding: 20px;
+}
+
+.history-section {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.history-header h3 {
+  margin: 0;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.clear-history-btn {
+  background: #ff5722;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  padding: 5px 10px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.clear-history-btn:hover {
+  background: #d84315;
+}
+
+.history-list {
+  flex: 1;
+  overflow-y: auto;
+  background: white;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.history-item {
+  padding: 10px;
+  border-bottom: 1px solid #f0f0f0;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #666;
+  transition: background-color 0.2s ease;
+}
+
+.history-item:hover {
+  background: #f5f5f5;
+  color: #333;
+}
+
+.history-item:last-child {
+  border-bottom: none;
+}
+
+.no-history {
+  text-align: center;
+  color: #999;
+  font-style: italic;
+  padding: 20px;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .calculator {
+    max-width: 100%;
+    min-height: auto;
+  }
+
+  .calculator-body {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .calculator-sidebar {
+    border-left: none;
+    border-top: 1px solid #e0e0e0;
+    max-height: 200px;
+  }
+
+  .button-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+
+  .digit-btn, .operator-btn, .clear-btn, .equals-btn {
+    padding: 15px;
+    font-size: 1rem;
+  }
+
+  .function-btn {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+
+  .display {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .calculator-header {
+    padding: 15px;
+  }
+
+  .calculator-header h2 {
+    font-size: 1.2rem;
+  }
+
+  .mode-toggle {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+
+  .display-container {
+    padding: 15px;
+  }
+
+  .display {
+    font-size: 1.8rem;
+  }
+
+  .calculator-main {
+    padding: 15px;
+  }
+
+  .button-grid {
+    gap: 6px;
+  }
+
+  .digit-btn, .operator-btn, .clear-btn, .equals-btn {
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+
+  .function-btn {
+    padding: 8px;
+    font-size: 0.8rem;
+  }
+
+  .calculator-sidebar {
+    padding: 15px;
+  }
+}
+
+/* Animation for button clicks */
+.digit-btn:active,
+.operator-btn:active,
+.clear-btn:active,
+.equals-btn:active,
+.function-btn:active {
+  transform: scale(0.95);
+}
+
+/* Scrollbar styling for history */
+.history-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.history-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.history-list::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.history-list::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+} 
