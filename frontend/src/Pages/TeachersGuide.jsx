@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import pdfData from "../data/generatedPdfList";
-import PDFViewer from "../components/PDFViewer";
+import PDFViewer from "../Components/PDFViewer";
 import SearchBar from '../Components/SearchBar';
 
 const TeachersGuide = () => {

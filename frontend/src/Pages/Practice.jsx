@@ -1,8 +1,8 @@
 // src/pages/Olympiad.jsx
 import React from 'react';
 import pdfData from '../data/generatedPdfList';
-import PDFViewer from '../components/PDFViewer';
-import SearchBar from '../components/SearchBar';
+import PDFViewer from '../Components/PDFViewer';
+import SearchBar from '../Components/SearchBar';
 import { useState } from 'react';
 
 const Practice = () => {

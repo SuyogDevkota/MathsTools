@@ -1,8 +1,8 @@
 // src/pages/Olympiad.jsx
 import React, { useState } from 'react';
 import pdfData from '../data/generatedPdfList';
-import PDFViewer from '../components/PDFViewer';
-import SearchBar from '../components/SearchBar'; // make sure path is correct
+import PDFViewer from '../Components/PDFViewer';
+import SearchBar from '../Components/SearchBar'; // make sure path is correct
 
 const Olympiad = () => {
   const allFiles = pdfData.olympiad.root;

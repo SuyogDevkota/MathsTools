@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SearchBar from "../Components/SearchBar";
 
-import PDFViewer from "../components/PDFViewer"; // your viewer component
+import PDFViewer from "../Components/PDFViewer"; // your viewer component
 import pdfData from "../data/generatedPdfList";
 
 const BooksPage = () => {
