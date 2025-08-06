@@ -55,11 +55,11 @@ app.get('/api/health', (req, res) => {
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-app.use(express.static(path.join(__dirname, '../frontend/build')));
-
+app.use(express.static(path.join(__dirname, '../frontend/dist')));
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
+  res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
 });
+
 
 // Error handling middleware (after frontend serving)
 app.use((err, req, res, next) => {
