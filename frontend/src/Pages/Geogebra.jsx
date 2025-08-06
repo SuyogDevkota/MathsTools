@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import pdfData from "../data/generatedPdfList";
 import ToolsViewer from "../Components/ToolsViewer";
-import SearchBar from "../components/SearchBar"; // adjust path if needed
+import SearchBar from "../Components/SearchBar"; // adjust path if needed
 
 const GeogebraTools = () => {
   const allFiles = pdfData.Teacherstools.root;
