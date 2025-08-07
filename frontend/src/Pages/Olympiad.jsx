@@ -1,22 +1,48 @@
 // src/pages/Olympiad.jsx
 import React, { useState } from 'react';
-import pdfData from '../data/generatedPdfList';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 import PDFViewer from '../Components/PDFViewer';
 import SearchBar from '../Components/SearchBar'; // make sure path is correct
 
 const Olympiad = () => {
-  const allFiles = pdfData.olympiad.root;
   const [searchTerm, setSearchTerm] = useState("");
+  const [files, setFiles] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const filteredFiles = allFiles.filter(file =>
-    file.title.toLowerCase().includes(searchTerm.toLowerCase())
+  React.useEffect(() => {
+    const fetchFiles = async () => {
+      setLoading(true);
+      try {
+        const res = await fetch(`${API_BASE_URL}/files/all`);
+        if (res.ok) {
+          const data = await res.json();
+          setFiles((data.files || []).filter(f => f.category === "olympiad"));
+        } else {
+          setFiles([]);
+        }
+      } catch (e) {
+        setFiles([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchFiles();
+  }, []);
+
+  const filteredFiles = files.filter(file =>
+    (file.title || '').toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
     <div>
       <h1>Olympiad Questions</h1>
       <SearchBar onSearch={setSearchTerm} />
-      <PDFViewer files={filteredFiles} />
+      {loading ? <p>Loading...</p> : <PDFViewer files={filteredFiles.map(f => ({
+  ...f,
+  title: f.originalName || f.filename || 'Untitled',
+  file: f.path ? `${API_BASE_URL.replace('/api','')}/${f.path.replace(/\\/g,'/')}` : ''
+}))} />}
+
     </div>
   );
 };

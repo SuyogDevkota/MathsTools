@@ -10,6 +10,7 @@ const Admin = () => {
   const [loginData, setLoginData] = useState({ username: '', password: '' });
   const [activeTab, setActiveTab] = useState('dashboard');
   const [files, setFiles] = useState([]);
+  const [categoryFilter, setCategoryFilter] = useState('all');
   const [stats, setStats] = useState({});
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -185,7 +186,7 @@ const Admin = () => {
 
       if (response.ok) {
         setMessage('File deleted successfully!');
-        loadDashboardData(localStorage.getItem('adminToken'));
+        await loadDashboardData(localStorage.getItem('adminToken'));
       } else {
         const data = await response.json();
         setMessage(data.error || 'Delete failed');
@@ -314,30 +315,47 @@ const Admin = () => {
         )}
 
         {activeTab === 'files' && (
-          <div className="files-management">
-            <h3>File Management</h3>
-            <div className="files-list">
-              {files.map((file) => (
-                <div key={file._id} className="file-item">
-                  <div className="file-info">
-                    <h4>{file.originalName}</h4>
-                    <p>Category: {file.category}</p>
-                    <p>Size: {formatFileSize(file.size)}</p>
-                    <p>Uploaded: {new Date(file.uploadedAt).toLocaleDateString()}</p>
-                  </div>
-                  <div className="file-actions">
-                    <button 
-                      onClick={() => handleFileDelete(file._id)}
-                      className="delete-btn"
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
+  <div className="files-management">
+    <h3>File Management</h3>
+    <div style={{ marginBottom: '1rem' }}>
+      <label htmlFor="categoryFilter">Filter by Category: </label>
+      <select
+        id="categoryFilter"
+        value={categoryFilter}
+        onChange={e => setCategoryFilter(e.target.value)}
+        style={{ padding: '0.3rem 0.6rem', borderRadius: '4px' }}
+      >
+        <option value="all">All</option>
+        <option value="books">Books</option>
+        <option value="olympiad">Olympiad</option>
+        <option value="practice">Practice</option>
+        <option value="teachersguide">Teachers Guide</option>
+        <option value="teacherstools">Teachers Tools</option>
+      </select>
+    </div>
+    <div className="files-list">
+      {files.filter(f => categoryFilter === 'all' || f.category === categoryFilter)
+        .map((file) => (
+        <div key={file._id} className="file-item">
+          <div className="file-info">
+            <h4>{file.originalName}</h4>
+            <p>Category: {file.category}</p>
+            <p>Size: {formatFileSize(file.size)}</p>
+            <p>Uploaded: {new Date(file.uploadedAt).toLocaleDateString()}</p>
           </div>
-        )}
+          <div className="file-actions">
+            <button 
+              onClick={() => handleFileDelete(file._id)}
+              className="delete-btn"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+)}
 
         {activeTab === 'upload' && (
           <div className="upload-section">

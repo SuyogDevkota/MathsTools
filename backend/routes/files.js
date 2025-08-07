@@ -94,8 +94,8 @@ router.post('/upload', authenticateToken, requireAdmin, upload.single('file'), a
   }
 });
 
-// Get all files (admin only)
-router.get('/all', authenticateToken, requireAdmin, async (req, res) => {
+// Get all files (public)
+router.get('/all', async (req, res) => {
   try {
     const { category, page = 1, limit = 20 } = req.query;
     

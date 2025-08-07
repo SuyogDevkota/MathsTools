@@ -1,4 +1,6 @@
 .pdf-viewer {
+  height: 400px; /* or any value you prefer */
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 16px;

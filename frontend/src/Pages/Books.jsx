@@ -2,22 +2,49 @@ import React, { useState } from "react";
 import SearchBar from "../Components/SearchBar";
 
 import PDFViewer from "../Components/PDFViewer"; // your viewer component
-import pdfData from "../data/generatedPdfList";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const BooksPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const files = pdfData.books.root; // or whatever subset you want for this page
+  const [files, setFiles] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  React.useEffect(() => {
+    const fetchFiles = async () => {
+      setLoading(true);
+      try {
+        const res = await fetch(`${API_BASE_URL}/files/all`);
+        if (res.ok) {
+          const data = await res.json();
+          // Filter files for books category only
+          setFiles((data.files || []).filter(f => f.category === "books"));
+        } else {
+          setFiles([]);
+        }
+      } catch (e) {
+        setFiles([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchFiles();
+  }, []);
 
   // Filter files based on search term
   const filteredFiles = files.filter((file) =>
-    file.title.toLowerCase().includes(searchTerm.toLowerCase())
+    (file.title || '').toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
     <div>
       <h1>Books</h1>
       <SearchBar onSearch={setSearchTerm} />
-      <PDFViewer files={filteredFiles} />
+      {loading ? <p>Loading...</p> : <PDFViewer files={filteredFiles.map(f => ({
+  ...f,
+  title: f.originalName || f.filename || 'Untitled',
+  file: f.path ? `${API_BASE_URL.replace('/api','')}/${f.path.replace(/\\/g,'/')}` : ''
+}))} />}
+
     </div>
   );
 };
